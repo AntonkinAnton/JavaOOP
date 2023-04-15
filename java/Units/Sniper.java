@@ -8,6 +8,6 @@ public class Sniper extends Shooter{
     }
 
     public void doubleShot(){
-        System.out.println("Make double shot, but defence decrease to " + (this.defenceSkill*0.5) + " points");
+        System.out.println("Make double shot, but defence decrease by " + (this.defenceSkill*0.5) + " points");
     }
 }

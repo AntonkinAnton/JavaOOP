@@ -2,7 +2,7 @@ package Units;
 
 import java.util.Random;
 
-abstract class Unit {
+public abstract class Unit{
     protected int currentHealth;
     protected int maxHealth;
     protected int attackSkill;
@@ -28,14 +28,31 @@ abstract class Unit {
     }
 
     public void move(){
-        System.out.printf("Move forward on %d steps", speed);
+        System.out.printf("Move forward on %d steps\n", speed);
     }
-    public void hit(){
-        System.out.printf("Make a melee hit with %d damage", new Random().nextInt(damage[0], damage[1] + 1));
+
+    public void attack(Unit unit){
+        if (unit == this){
+            System.out.println("You can't hit yourself!\n");
+            return;
+        }
+        if (unit == null || unit.currentHealth <= 0){
+            System.out.println("There's nobody to hit or he's dead\n");
+            return;
+        }
+        int hit = (new Random().nextInt(damage[0], damage[1] + 1)) * ((attackSkill + 1)/(unit.defenceSkill + 1));
+        System.out.printf("Hit " + unit.getClass().getSimpleName() + " " + unit.name + " with " + hit + " damage\n\n");
+        unit.currentHealth -= hit;
+
+
     }
-    public void defend(){
-        System.out.printf("Take a defence pose. Reduce income hit on %d points", defenceSkill);
+
+
+    public void showStats(){
+        System.out.printf("%s %s %s \nHealth: %d\nAttack: %d\nDefence: %d\n\n",
+                this.race, this.getClass().getSimpleName(), this.name, this.currentHealth, this.attackSkill, this.defenceSkill );
     }
+
     @Override
     public String toString() {
         return race + " " + name;
