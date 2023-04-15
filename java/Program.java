@@ -24,7 +24,7 @@ public class Program {
         units.add(new Monk("Кирилл"));
         units.add(new PikeMan("Бабиджон"));
         units.add(new Mage("Мэрлин"));
-        units.add(new xBowMan("Орлинный Глаз"));
+        units.add(new XBowMan("Орлинный Глаз"));
 
         System.out.println("За боем наблюдали:\n");
 
