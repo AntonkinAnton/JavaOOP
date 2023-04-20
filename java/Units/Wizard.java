@@ -15,7 +15,7 @@ abstract class Wizard extends Unit{
     }
 
     public void magicAttack(){
-        System.out.printf("Make an attack spell with %d damage", new Random().nextInt(spellDamage[0], spellDamage[1] + 1));
+        System.out.printf("Make an spell attack with %d damage", new Random().nextInt(spellDamage[0], spellDamage[1] + 1));
     }
 
 }

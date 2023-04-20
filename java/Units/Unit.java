@@ -12,9 +12,7 @@ public abstract class Unit{
     protected String name;
     protected Race race;
 
-    protected enum Race{
-        Human, Elf, Orc, Gnome
-    }
+
 
     public Unit(int currentHealth, int maxHealth, int attackSkill, int[] damage, int defenceSkill, int speed, String name, Race race) {
         this.currentHealth = currentHealth;
