@@ -1,35 +1,44 @@
+import Enums.Names;
 import Units.*;
+import Units.Monk;
+import Units.Peasant;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Random;
 
 public class Program {
     public static void main(String[] args) {
-        Sniper sniper = new Sniper("Серега");
-        Peasant peasant = new Peasant("Валера");
+        ArrayList<Unit> firstTeam = randomizeTeam(10);
+        ArrayList<Unit> secondTeam = randomizeTeam(10);
 
-        System.out.printf("В бой вступают %s и %s\n\n", sniper, peasant);
-        sniper.showStats();
-        peasant.showStats();
+        System.out.println("<-----First Team----->");
+        firstTeam.forEach(unit-> System.out.println(unit.showStats()));
+        System.out.println("<-----Second Team----->");
+        secondTeam.forEach(unit-> System.out.println(unit.showStats()));
 
-        sniper.attack(peasant);
-        peasant.showStats();
-        sniper.attack(peasant);
-        sniper.attack(peasant);
-        sniper.attack(peasant);
-        peasant.showStats();
+    }
+    private static ArrayList<Unit> randomizeTeam(int teamSize){
+        ArrayList<Unit> team = new ArrayList<>();
 
-        List<Unit> units = new ArrayList<>();
-        units.add(new Bandit("Гарик"));
-        units.add(new Monk("Кирилл"));
-        units.add(new PikeMan("Бабиджон"));
-        units.add(new Mage("Мэрлин"));
-        units.add(new XBowMan("Орлинный Глаз"));
+        for (int i = 0; i < teamSize; i++){
+            switch (new Random().nextInt(1, 8)) {
+                case 1 -> team.add(new Sniper(getRandomName().toString()));
+                case 2 -> team.add(new Mage(getRandomName().toString()));
+                case 3 -> team.add(new PikeMan(getRandomName().toString()));
+                case 4 -> team.add(new Peasant(getRandomName().toString()));
+                case 5 -> team.add(new Monk(getRandomName().toString()));
+                case 6 -> team.add(new XBowMan(getRandomName().toString()));
+                case 7 -> team.add(new Bandit(getRandomName().toString()));
+            }
 
-        System.out.println("За боем наблюдали:\n");
-
-        for (Unit unit : units) {
-            System.out.println(unit);
         }
+        return team;
+    }
+
+    private static Names getRandomName() {
+        Names[] values = Names.values();
+        Random random = new Random();
+        int index = random.nextInt(values.length);
+        return values[index];
     }
 }

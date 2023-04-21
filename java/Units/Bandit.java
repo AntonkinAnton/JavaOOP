@@ -1,8 +1,10 @@
 package Units;
 
+import Enums.Race;
+
 public class Bandit extends FootWarrior{
     public Bandit(String name) {
-        super(100, 100, 3, new int[]{3, 6}, 5, 6, name, Race.Orc);
+        super(100, 100, 3, 6, name, Race.Orc, 5, new int[]{3, 6});
     }
 
     public void fastAttack(){

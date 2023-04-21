@@ -1,24 +1,21 @@
 package Units;
 
-import java.util.Random;
+import Enums.Race;
+import Interfaces.IMovable;
+import Interfaces.IStats;
 
-public abstract class Unit{
+
+public abstract class Unit implements IStats, IMovable {
     protected int currentHealth;
     protected int maxHealth;
-    protected int attackSkill;
-    protected int[] damage;
     protected int defenceSkill;
     protected int speed;
     protected String name;
     protected Race race;
 
-
-
-    public Unit(int currentHealth, int maxHealth, int attackSkill, int[] damage, int defenceSkill, int speed, String name, Race race) {
+    public Unit(int currentHealth, int maxHealth, int defenceSkill, int speed, String name, Race race) {
         this.currentHealth = currentHealth;
         this.maxHealth = maxHealth;
-        this.attackSkill = attackSkill;
-        this.damage = damage;
         this.defenceSkill = defenceSkill;
         this.speed = speed;
         this.name = name;
@@ -29,26 +26,9 @@ public abstract class Unit{
         System.out.printf("Move forward on %d steps\n", speed);
     }
 
-    public void attack(Unit unit){
-        if (unit == this){
-            System.out.println("You can't hit yourself!\n");
-            return;
-        }
-        if (unit == null || unit.currentHealth <= 0){
-            System.out.println("There's nobody to hit or he's dead\n");
-            return;
-        }
-        int hit = (new Random().nextInt(damage[0], damage[1] + 1)) * ((attackSkill + 1)/(unit.defenceSkill + 1));
-        System.out.printf("Hit " + unit.getClass().getSimpleName() + " " + unit.name + " with " + hit + " damage\n\n");
-        unit.currentHealth -= hit;
-
-
-    }
-
-
-    public void showStats(){
-        System.out.printf("%s %s %s \nHealth: %d\nAttack: %d\nDefence: %d\n\n",
-                this.race, this.getClass().getSimpleName(), this.name, this.currentHealth, this.attackSkill, this.defenceSkill );
+    public String showStats(){
+        return String.format ("%s %s %s \nHealth: %d\nSpeed: %d\nDefence: %d\n",
+                this.race, this.getClass().getSimpleName(), this.name, this.currentHealth, this.speed, this.defenceSkill);
     }
 
     @Override

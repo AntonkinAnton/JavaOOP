@@ -1,22 +1,54 @@
 package Units;
 
+import Enums.Race;
+import Interfaces.IRangeAttack;
+
+import java.util.Arrays;
 import java.util.Random;
 
-abstract class Shooter extends Unit {
-    protected int rangeDamage[];
+abstract class Shooter extends Warrior implements IRangeAttack {
+    protected int[] rangeDamage;
     protected int ammunition;
+    protected boolean isWeaponLoaded = true;
 
-    public Shooter(int currentHealth, int maxHealth, int attackSkill, int[] damage, int defenceSkill, int speed, String name, Race race, int[] rangeDamage, int ammunition) {
-        super(currentHealth, maxHealth, attackSkill, damage, defenceSkill, speed, name, race);
+    public Shooter(int currentHealth, int maxHealth, int defenceSkill, int speed, String name, Race race, int attackSkill, int[] rangeDamage, int ammunition) {
+        super(currentHealth, maxHealth, defenceSkill, speed, name, race, attackSkill);
         this.rangeDamage = rangeDamage;
         this.ammunition = ammunition;
     }
 
-    public void shoot(){
-        System.out.printf("Make a shot with %d damage", new Random().nextInt(rangeDamage[0], rangeDamage[1] + 1));
+    public void reload(){
+        if (this.ammunition == 0){
+            System.out.println("You're out of ammo\n");
+            return;
+        }
+        this.ammunition--;
+        System.out.printf("Weapon reloaded. Ammo left: %d\n", this.ammunition);
     }
 
-    public void reload(){
-        System.out.printf("Reload weapon. Ammo left: %d", ammunition);
+    @Override
+    public void rangeAttack(Unit unit) {
+        if (unit == this){
+            System.out.println("You can't hit yourself!\n");
+            return;
+        }
+        if (unit == null || unit.currentHealth <= 0){
+            System.out.println("There's nobody to hit or he's dead\n");
+            return;
+        }
+        if (!this.isWeaponLoaded){
+            System.out.println("Your weapon is not loaded\n");
+            return;
+        }
+
+        int hit = (new Random().nextInt(rangeDamage[0], rangeDamage[1] + 1)) * ((attackSkill + 1)/(unit.defenceSkill + 1));
+        System.out.printf("Shot " + unit.getClass().getSimpleName() + " " + unit.name + " with " + hit + " damage\n\n");
+        unit.currentHealth -= hit;
+        isWeaponLoaded = false;
+    }
+
+    @Override
+    public String showStats() {
+        return super.showStats() + "Ammo: " + this.ammunition + "\n" + "Range Damage: " + Arrays.toString(rangeDamage) + "\n";
     }
 }
