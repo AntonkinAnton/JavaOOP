@@ -2,11 +2,12 @@ package Units;
 
 import Enums.Race;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class PikeMan extends FootWarrior{
-    public PikeMan(String name) {
-        super(100, 100, 5,7 , name, Race.Human, 6, new int[] {4, 6});
+    public PikeMan(ArrayList<Unit> team, String name) {
+        super(team, 100, 5,7 , name, Race.Human, 6, new int[] {4, 6});
     }
 
     public void longHit(Unit unit){

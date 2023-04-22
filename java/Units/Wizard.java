@@ -3,6 +3,7 @@ package Units;
 import Enums.Race;
 import Interfaces.IMagicAttack;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
@@ -10,8 +11,9 @@ abstract class Wizard extends Warrior implements IMagicAttack {
     protected int mana;
     protected int[] spellDamage;
 
-    public Wizard(int currentHealth, int maxHealth, int defenceSkill, int speed, String name, Race race, int attackSkill, int mana, int[] spellDamage) {
-        super(currentHealth, maxHealth, defenceSkill, speed, name, race, attackSkill);
+    public Wizard(ArrayList<Unit> team, int currentHealth, int defenceSkill, int speed,
+                  String name, Race race, int attackSkill, int mana, int[] spellDamage) {
+        super(team, currentHealth, defenceSkill, speed, name, race, attackSkill);
         this.mana = mana;
         this.spellDamage = spellDamage;
     }

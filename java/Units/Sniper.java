@@ -2,13 +2,14 @@ package Units;
 
 import Enums.Race;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Sniper extends Shooter{
 
-    public Sniper(String name) {
-        super(100, 100, 3,
-                3, name, Race.Elf, 7, new int[]{5, 7}, 10);
+    public Sniper(ArrayList<Unit> team, String name) {
+        super(team, 50, 3,
+                5, name, Race.Elf, 7, new int[]{5, 7}, 10);
     }
 
     public void doubleShot(Unit unit){

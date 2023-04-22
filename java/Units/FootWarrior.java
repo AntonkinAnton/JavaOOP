@@ -3,6 +3,7 @@ package Units;
 import Enums.Race;
 import Interfaces.IPhysicalAttack;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
@@ -10,8 +11,8 @@ abstract class FootWarrior extends Warrior implements IPhysicalAttack {
 
     protected int[] damage;
 
-    public FootWarrior(int currentHealth, int maxHealth, int defenceSkill, int speed, String name, Race race, int attackSkill, int[] damage) {
-        super(currentHealth, maxHealth, defenceSkill, speed, name, race, attackSkill);
+    public FootWarrior(ArrayList<Unit> team, int currentHealth, int defenceSkill, int speed, String name, Race race, int attackSkill, int[] damage) {
+        super(team, currentHealth, defenceSkill, speed, name, race, attackSkill);
         this.damage = damage;
     }
 
@@ -32,6 +33,7 @@ abstract class FootWarrior extends Warrior implements IPhysicalAttack {
     public String showStats(){
         return super.showStats() +  String.format("Melee Damage: %s\n", Arrays.toString(damage));
     }
+
 
 
 

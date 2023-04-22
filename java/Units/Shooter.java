@@ -3,19 +3,23 @@ package Units;
 import Enums.Race;
 import Interfaces.IRangeAttack;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
 abstract class Shooter extends Warrior implements IRangeAttack {
     protected int[] rangeDamage;
     protected int ammunition;
-    protected boolean isWeaponLoaded = true;
+    protected boolean isWeaponLoaded;
 
-    public Shooter(int currentHealth, int maxHealth, int defenceSkill, int speed, String name, Race race, int attackSkill, int[] rangeDamage, int ammunition) {
-        super(currentHealth, maxHealth, defenceSkill, speed, name, race, attackSkill);
+    public Shooter(ArrayList<Unit> team, int currentHealth, int defenceSkill, int speed, String name,
+                   Race race, int attackSkill, int[] rangeDamage, int ammunition) {
+        super(team, currentHealth, defenceSkill, speed, name, race, attackSkill);
         this.rangeDamage = rangeDamage;
         this.ammunition = ammunition;
+        this.isWeaponLoaded = true;
     }
+
 
     public void reload(){
         if (this.ammunition == 0){

@@ -2,10 +2,12 @@ package Units;
 
 import Enums.Race;
 
+import java.util.ArrayList;
+
 
 public class Peasant extends NonWarriors {
-    public Peasant(String name) {
-        super(20, 20, 1, 3, name, Race.Human);
+    public Peasant(ArrayList<Unit> team, String name) {
+        super(team, 20, 1, 1, name, Race.Human);
     }
 
     public void becameHumanShield(Unit unit){

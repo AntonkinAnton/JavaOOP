@@ -2,28 +2,33 @@ package Units;
 
 import Enums.Race;
 import Interfaces.IMovable;
-import Interfaces.IStats;
+
+import java.util.ArrayList;
+import java.util.Random;
 
 
-public abstract class Unit implements IStats, IMovable {
+public abstract class Unit implements IMovable, Comparable{
     protected int currentHealth;
     protected int maxHealth;
     protected int defenceSkill;
     protected int speed;
     protected String name;
     protected Race race;
+    protected ArrayList<Unit> team;
 
-    public Unit(int currentHealth, int maxHealth, int defenceSkill, int speed, String name, Race race) {
+    public Unit(ArrayList<Unit> team, int currentHealth, int defenceSkill, int speed, String name, Race race) {
+        this.team = team;
         this.currentHealth = currentHealth;
-        this.maxHealth = maxHealth;
+        this.maxHealth = currentHealth;
         this.defenceSkill = defenceSkill;
         this.speed = speed;
         this.name = name;
         this.race = race;
+        if (new Random().nextBoolean()) this.currentHealth/=2;
     }
 
-    public void move(){
-        System.out.printf("Move forward on %d steps\n", speed);
+    public void turnMove(){
+//        System.out.printf("Move forward on %d steps\n", speed);
     }
 
     public String showStats(){
@@ -33,6 +38,12 @@ public abstract class Unit implements IStats, IMovable {
 
     @Override
     public String toString() {
-        return race + " " + name;
+        return getClass().getSimpleName() + " " + race + " " + name;
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        Unit unit = (Unit)o;
+        return unit.speed - this.speed;
     }
 }

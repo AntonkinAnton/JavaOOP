@@ -2,11 +2,13 @@ package Units;
 
 import Enums.Race;
 
+import java.util.ArrayList;
+
 public abstract class Warrior extends Unit {
 
     protected int attackSkill;
-    public Warrior(int currentHealth, int maxHealth, int defenceSkill, int speed, String name, Race race, int attackSkill) {
-        super(currentHealth, maxHealth, defenceSkill, speed, name, race);
+    public Warrior(ArrayList<Unit> team, int currentHealth, int defenceSkill, int speed, String name, Race race, int attackSkill) {
+        super(team, currentHealth, defenceSkill, speed, name, race);
         this.attackSkill = attackSkill;
     }
     public String showStats(){
