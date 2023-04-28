@@ -11,8 +11,9 @@ abstract class FootWarrior extends Warrior implements IPhysicalAttack {
 
     protected int[] damage;
 
-    public FootWarrior(ArrayList<Unit> team, int currentHealth, int defenceSkill, int speed, String name, Race race, int attackSkill, int[] damage) {
-        super(team, currentHealth, defenceSkill, speed, name, race, attackSkill);
+    public FootWarrior(float x, float y, ArrayList<Unit> team, int currentHealth,
+                       int defenceSkill, int speed, String name, Race race, int attackSkill, int[] damage) {
+        super(x, y, team, currentHealth, defenceSkill, speed, name, race, attackSkill);
         this.damage = damage;
     }
 
@@ -27,7 +28,7 @@ abstract class FootWarrior extends Warrior implements IPhysicalAttack {
         }
         int hit = (new Random().nextInt(damage[0], damage[1] + 1)) * ((attackSkill + 1)/(unit.defenceSkill + 1));
         System.out.printf("Hit " + unit.getClass().getSimpleName() + " " + unit.name + " with " + hit + " damage\n\n");
-        unit.currentHealth -= hit;
+        unit.getDamage(hit);
     }
 
     public String showStats(){

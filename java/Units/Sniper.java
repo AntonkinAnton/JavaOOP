@@ -7,8 +7,8 @@ import java.util.Random;
 
 public class Sniper extends Shooter{
 
-    public Sniper(ArrayList<Unit> team, String name) {
-        super(team, 50, 3,
+    public Sniper(ArrayList<Unit> team, String name, float x, float y) {
+        super(x, y, team, 50, 3,
                 5, name, Race.Elf, 7, new int[]{5, 7}, 10);
     }
 
@@ -27,15 +27,10 @@ public class Sniper extends Shooter{
             System.out.println("There's nobody to hit or he's dead\n");
             return;
         }
-        if (!this.isWeaponLoaded){
-            System.out.println("Your weapon is not loaded\n");
-            return;
-        }
 
         int hit = (new Random().nextInt(rangeDamage[0]*2, rangeDamage[1]*2 + 1)) * ((attackSkill + 1)/(unit.defenceSkill + 1));
         System.out.printf("Double shot in " + unit.getClass().getSimpleName() + " " + unit.name + " with " + hit + " damage\n\n");
         unit.currentHealth -= hit;
         this.defenceSkill -= (this.defenceSkill/2);
-        isWeaponLoaded = false;
     }
 }

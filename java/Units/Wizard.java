@@ -11,9 +11,9 @@ abstract class Wizard extends Warrior implements IMagicAttack {
     protected int mana;
     protected int[] spellDamage;
 
-    public Wizard(ArrayList<Unit> team, int currentHealth, int defenceSkill, int speed,
-                  String name, Race race, int attackSkill, int mana, int[] spellDamage) {
-        super(team, currentHealth, defenceSkill, speed, name, race, attackSkill);
+    public Wizard(float x, float y, ArrayList<Unit> team, int currentHealth, int defenceSkill,
+                  int speed, String name, Race race, int attackSkill, int mana, int[] spellDamage) {
+        super(x, y, team, currentHealth, defenceSkill, speed, name, race, attackSkill);
         this.mana = mana;
         this.spellDamage = spellDamage;
     }

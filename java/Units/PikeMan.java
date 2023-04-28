@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class PikeMan extends FootWarrior{
-    public PikeMan(ArrayList<Unit> team, String name) {
-        super(team, 100, 5,7 , name, Race.Human, 6, new int[] {4, 6});
+    public PikeMan(ArrayList<Unit> team, String name, float x, float y) {
+        super(x, y, team, 100, 5,7 , name, Race.Human, 6, new int[] {4, 6});
     }
 
     public void longHit(Unit unit){
@@ -29,7 +29,7 @@ public class PikeMan extends FootWarrior{
 
         int hit = (new Random().nextInt((int)(damage[0]*1.5), (int)(damage[1]*1.5) + 1)) * ((attackSkill + 1)/(unit.defenceSkill + 1));
         System.out.printf("Hit " + unit.getClass().getSimpleName() + " " + unit.name + " with " + hit + " damage\n\n");
-        unit.currentHealth -= hit;
+        unit.getDamage(hit);
         this.speed -= 1;
 
     }

@@ -1,13 +1,14 @@
 package Units;
 
 import Enums.Race;
+import Enums.State;
 
 import java.util.ArrayList;
 
 public class Monk extends NonWarriors {
     private int mana;
-    public Monk(ArrayList<Unit> team, String name) {
-        super(team, 30, 2, 2,
+    public Monk(ArrayList<Unit> team, String name, float x, float y) {
+        super(x, y, team, 30, 2, 2,
                 name, Race.Human);
         this.mana = 50;
     }
@@ -20,13 +21,14 @@ public class Monk extends NonWarriors {
             System.out.println("Not enough mana!\n");
             return;
         }
-        if (unit.currentHealth > 0){
+        if (unit.state != State.Dead){
             System.out.println("He's not dead\n");
             return;
         }
 
-        System.out.println("Resurrect " + unit.race + " " + unit.name + ". He's hp now " + unit.maxHealth + " points\n");
+        System.out.println("Resurrect " + unit.race + " " + unit.name + ". His hp now " + unit.maxHealth + " points\n");
         unit.currentHealth = unit.maxHealth;
+        unit.state = State.Available;
         this.mana -= 25;
     }
 

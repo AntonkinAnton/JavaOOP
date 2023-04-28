@@ -6,8 +6,8 @@ import java.util.ArrayList;
 
 
 public class Peasant extends NonWarriors {
-    public Peasant(ArrayList<Unit> team, String name) {
-        super(team, 20, 1, 1, name, Race.Human);
+    public Peasant(ArrayList<Unit> team, String name, float x, float y) {
+        super(x, y, team, 20, 1, 1, name, Race.Human);
     }
 
     public void becameHumanShield(Unit unit){

@@ -7,12 +7,12 @@ import java.util.Arrays;
 import java.util.Random;
 
 public class Mage extends Wizard{
-    public Mage(ArrayList<Unit> team, String name) {
-        super(team, 40, 3,
+    public Mage(ArrayList<Unit> team, String name, float x, float y) {
+        super(x, y, team, 40, 3,
                 3,  name, Race.Human, 5,100, new int[]{9, 11});
     }
 
-    public void turnMove(){
+    public void turnMove(ArrayList<Unit> enemyTeam){
 
             int hpToAdd = new Random().nextInt(this.spellDamage[0],this.spellDamage[1]+1);
             if(this.mana < 1){
@@ -68,7 +68,7 @@ public class Mage extends Wizard{
         int hit = (spellDamage[0] + spellDamage[1])/2;
 
         for (int i = 0; i < units.length; i++) {
-            units[i].currentHealth -= hit;
+            units[i].getDamage(hit);
         }
         System.out.printf("Make a magick multiple attack for %d unit with %d summary damage\n\n",
                 units.length, ((spellDamage[0] + spellDamage[1])/2)* units.length);
