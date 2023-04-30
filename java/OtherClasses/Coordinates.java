@@ -1,17 +1,17 @@
 package OtherClasses;
 
 public class Coordinates {
-    public float x;
-    public float y;
+    public int x;
+    public int y;
 
-    public Coordinates(float x, float y) {
+    public Coordinates(int x, int y) {
         this.x = x;
         this.y = y;
     }
 
-    public float findDistance(Coordinates opposite){
-        float diffX = this.x - opposite.x;
-        float diffY = this.y - opposite.y;
-        return (float)Math.sqrt(Math.pow(diffX,2) + Math.pow(diffY, 2));
+    public int findDistance(Coordinates opposite){
+        int diffX = this.x - opposite.x;
+        int diffY = this.y - opposite.y;
+        return (int)Math.sqrt(Math.pow(diffX,2) + Math.pow(diffY, 2));
     }
 }

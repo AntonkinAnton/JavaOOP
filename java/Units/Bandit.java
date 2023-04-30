@@ -5,7 +5,7 @@ import Enums.Race;
 import java.util.ArrayList;
 
 public class Bandit extends FootWarrior{
-    public Bandit(ArrayList<Unit> team, String name, float x, float y) {
+    public Bandit(ArrayList<Unit> team, String name, int x, int y) {
         super(x, y, team, 70, 3, 6, name, Race.Orc, 5, new int[]{3, 6});
     }
 

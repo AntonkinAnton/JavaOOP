@@ -19,7 +19,7 @@ public abstract class Unit implements IMovable, Comparable{
     protected Coordinates position;
     protected State state;
 
-    public Unit(float x, float y, ArrayList<Unit> team, int currentHealth, int defenceSkill, int speed, String name, Race race) {
+    public Unit(int x, int y, ArrayList<Unit> team, int currentHealth, int defenceSkill, int speed, String name, Race race) {
         this.team = team;
         this.currentHealth = currentHealth;
         this.maxHealth = currentHealth;
@@ -38,17 +38,31 @@ public abstract class Unit implements IMovable, Comparable{
 
     protected void getDamage(int hit){
         this.currentHealth -= hit;
-        if (currentHealth <= 0) this.state = State.Dead;
+        if (currentHealth <= 0) {
+            this.state = State.Dead;
+            currentHealth = 0;
+        }
     }
 
-    public String showStats(){
+    public int[] getCoords(){
+        return new int[]{this.position.x, this.position.y};
+    }
+    public State getState(){
+        return this.state;
+    }
+    public String getInfo(){
         return String.format ("%s %s %s \nStatus: %s\nHealth: %d\nSpeed: %d\nDefence: %d\n",
-                this.race, this.getClass().getSimpleName(), this.name, this.state, this.currentHealth, this.speed, this.defenceSkill);
+                this.getClass().getSimpleName(), this.race, this.name, this.state,
+                this.currentHealth, this.speed, this.defenceSkill);
+    }
+
+    protected String getShortName(){
+        return this.getClass().getSimpleName() + " " + name + ": ";
     }
 
     @Override
     public String toString() {
-        return getClass().getSimpleName() + " " + race + " " + name;
+        return getClass().getSimpleName()+ " " + name + " " + this.state + " HP: " + this.currentHealth;
     }
 
     @Override

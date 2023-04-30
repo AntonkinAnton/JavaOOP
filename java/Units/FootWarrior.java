@@ -11,7 +11,7 @@ abstract class FootWarrior extends Warrior implements IPhysicalAttack {
 
     protected int[] damage;
 
-    public FootWarrior(float x, float y, ArrayList<Unit> team, int currentHealth,
+    public FootWarrior(int x, int y, ArrayList<Unit> team, int currentHealth,
                        int defenceSkill, int speed, String name, Race race, int attackSkill, int[] damage) {
         super(x, y, team, currentHealth, defenceSkill, speed, name, race, attackSkill);
         this.damage = damage;
@@ -31,8 +31,8 @@ abstract class FootWarrior extends Warrior implements IPhysicalAttack {
         unit.getDamage(hit);
     }
 
-    public String showStats(){
-        return super.showStats() +  String.format("Melee Damage: %s\n", Arrays.toString(damage));
+    public String getInfo(){
+        return super.getInfo() +  String.format("Melee Damage: %s\n", Arrays.toString(damage));
     }
 
 

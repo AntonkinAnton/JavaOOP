@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class PikeMan extends FootWarrior{
-    public PikeMan(ArrayList<Unit> team, String name, float x, float y) {
+    public PikeMan(ArrayList<Unit> team, String name, int x, int y) {
         super(x, y, team, 100, 5,7 , name, Race.Human, 6, new int[] {4, 6});
     }
 

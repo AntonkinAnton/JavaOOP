@@ -1,13 +1,19 @@
 package Units;
 
 import Enums.Race;
+import Enums.State;
 
 import java.util.ArrayList;
 
 
 public class Peasant extends NonWarriors {
-    public Peasant(ArrayList<Unit> team, String name, float x, float y) {
+    public Peasant(ArrayList<Unit> team, String name, int x, int y) {
         super(x, y, team, 20, 1, 1, name, Race.Human);
+    }
+
+    @Override
+    public void turnMove(ArrayList<Unit> enemyTeam) {
+        if (this.state == State.Busy) state = State.Available;
     }
 
     public void becameHumanShield(Unit unit){

@@ -5,31 +5,45 @@ import Units.Peasant;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Scanner;
 
 public class Program {
+        public static ArrayList<Unit> firstTeam = new ArrayList<>();
+        public static ArrayList<Unit> secondTeam = new ArrayList<>();
+        public static ArrayList<Unit> battle = new ArrayList<>();
     public static void main(String[] args) {
-        ArrayList<Unit> firstTeam = new ArrayList<>();
-        randomizeTeam(5, firstTeam, 1);
-        ArrayList<Unit> secondTeam = new ArrayList<>();
-        randomizeTeam(5, secondTeam, 10);
-
-        System.out.println("<-----First Team----->");
-        firstTeam.forEach(unit-> System.out.println(unit.showStats()));
-        System.out.println("<-----Second Team----->");
-        secondTeam.forEach(unit-> System.out.println(unit.showStats()));
-        System.out.println("<-------Move------->");
-        firstTeam.forEach(unit -> unit.turnMove(secondTeam));
-        System.out.println("<-------First Team After Move------->");
-        firstTeam.forEach(unit-> System.out.println(unit.showStats()));
-        System.out.println("<-------Second Team After Move------->");
-        secondTeam.forEach(unit-> System.out.println(unit.showStats()));
-
-        ArrayList<Unit> battle = new ArrayList<>();
+        randomizeTeam(10, firstTeam, 1);
+        randomizeTeam(10, secondTeam, 10);
         battle.addAll(firstTeam);
         battle.addAll(secondTeam);
-
         battle.sort(Unit::compareTo);
-        System.out.println(battle);
+        var scanner = new Scanner(System.in);
+        while (true){
+            View.view();
+            scanner.nextLine();
+            for (Unit unit: battle) {
+                if (firstTeam.contains(unit)) unit.turnMove(secondTeam);
+                else unit.turnMove(firstTeam);
+            }
+
+        }
+
+//        System.out.println("<-----First Team----->");
+//        firstTeam.forEach(unit-> System.out.println(unit.getInfo()));
+//        System.out.println("<-----Second Team----->");
+//        secondTeam.forEach(unit-> System.out.println(unit.getInfo()));
+//        System.out.println("<-------Move------->");
+//        firstTeam.forEach(unit -> unit.turnMove(secondTeam));
+//        System.out.println("<-------First Team After Move------->");
+//        firstTeam.forEach(unit-> System.out.println(unit.getInfo()));
+//        System.out.println("<-------Second Team After Move------->");
+//        secondTeam.forEach(unit-> System.out.println(unit.getInfo()));
+
+
+
+
+
+//        System.out.println(battle);
     }
     private static void randomizeTeam(int teamSize, ArrayList<Unit> team, int xSideOfTeam){
 

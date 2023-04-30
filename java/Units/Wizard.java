@@ -11,7 +11,7 @@ abstract class Wizard extends Warrior implements IMagicAttack {
     protected int mana;
     protected int[] spellDamage;
 
-    public Wizard(float x, float y, ArrayList<Unit> team, int currentHealth, int defenceSkill,
+    public Wizard(int x, int y, ArrayList<Unit> team, int currentHealth, int defenceSkill,
                   int speed, String name, Race race, int attackSkill, int mana, int[] spellDamage) {
         super(x, y, team, currentHealth, defenceSkill, speed, name, race, attackSkill);
         this.mana = mana;
@@ -38,8 +38,12 @@ abstract class Wizard extends Warrior implements IMagicAttack {
         this.mana -= 5;
     }
     @Override
-    public String showStats() {
-        return super.showStats() + "Mana: " + this.mana + "\n" + "Magic Damage: " + Arrays.toString(spellDamage) + "\n";
+    public String getInfo() {
+        return super.getInfo() + "Mana: " + this.mana + "\n" + "Magic Damage: " + Arrays.toString(spellDamage) + "\n";
     }
 
+    @Override
+    public String toString() {
+        return super.toString() + " M: " + this.mana;
+    }
 }

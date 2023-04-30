@@ -7,7 +7,7 @@ import java.util.Random;
 
 public class Sniper extends Shooter{
 
-    public Sniper(ArrayList<Unit> team, String name, float x, float y) {
+    public Sniper(ArrayList<Unit> team, String name, int x, int y) {
         super(x, y, team, 50, 3,
                 5, name, Race.Elf, 7, new int[]{5, 7}, 10);
     }

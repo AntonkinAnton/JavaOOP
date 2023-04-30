@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.Random;
 
 public class Mage extends Wizard{
-    public Mage(ArrayList<Unit> team, String name, float x, float y) {
+    public Mage(ArrayList<Unit> team, String name, int x, int y) {
         super(x, y, team, 40, 3,
                 3,  name, Race.Human, 5,100, new int[]{9, 11});
     }
@@ -16,7 +16,7 @@ public class Mage extends Wizard{
 
             int hpToAdd = new Random().nextInt(this.spellDamage[0],this.spellDamage[1]+1);
             if(this.mana < 1){
-                System.out.println("Not enough mana\n");
+                System.out.println(getShortName() + "Not enough mana\n");
                 return;
             }
             int mostDamagedIndex = -1;
@@ -31,7 +31,7 @@ public class Mage extends Wizard{
                 }
             }
             if (mostDamagedIndex == -1){
-                System.out.println("There's nobody to heal\n");
+                System.out.println(getShortName() + "There's nobody to heal\n");
                 return;
             }
             if (hpToAdd > this.mana) hpToAdd = this.mana;

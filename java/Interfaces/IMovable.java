@@ -4,6 +4,6 @@ import Units.Unit;
 import java.util.ArrayList;
 
 public interface IMovable {
-    String showStats();
+    String getInfo();
     void turnMove(ArrayList<Unit> enemyTeam);
 }

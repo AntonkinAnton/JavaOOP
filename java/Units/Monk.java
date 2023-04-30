@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class Monk extends NonWarriors {
     private int mana;
-    public Monk(ArrayList<Unit> team, String name, float x, float y) {
+    public Monk(ArrayList<Unit> team, String name, int x, int y) {
         super(x, y, team, 30, 2, 2,
                 name, Race.Human);
         this.mana = 50;
@@ -33,7 +33,11 @@ public class Monk extends NonWarriors {
     }
 
     @Override
-    public String showStats() {
-        return super.showStats() + "Mana: " + this.mana + "\n";
+    public String getInfo() {
+        return super.getInfo() + "Mana: " + this.mana + "\n";
+    }
+
+    public String toString() {
+        return super.toString() + " D: " + this.defenceSkill + " M: " + this.mana;
     }
 }
