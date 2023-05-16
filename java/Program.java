@@ -63,12 +63,6 @@ public class Program {
         }
     }
 
-    private static Names getRandomName1() {
-        Names[] values = Names.values();
-        Random random = new Random();
-        int index = random.nextInt(values.length);
-        return values[index];
-    }
     private static String getRandomName(){
         Random rnd = new Random();
         int rndIndex = rnd.nextInt(namesList.size());
