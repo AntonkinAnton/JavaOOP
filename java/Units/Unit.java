@@ -43,7 +43,9 @@ public abstract class Unit implements IMovable, Comparable{
             currentHealth = 0;
         }
     }
-
+    public int getCurrentHealth(){
+        return this.currentHealth;
+    }
     public int[] getCoords(){
         return new int[]{this.position.x, this.position.y};
     }

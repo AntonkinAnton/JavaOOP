@@ -65,7 +65,7 @@ abstract class Shooter extends Warrior implements IRangeAttack {
             return;
         }
 
-        int hit = (new Random().nextInt(rangeDamage[0], rangeDamage[1] + 1)) * ((attackSkill + 1)/(unit.defenceSkill + 1));
+        int hit = (new Random().nextInt(rangeDamage[0], rangeDamage[1] + 1)) * (int)(Math.ceil((attackSkill + 1)/(float)(unit.defenceSkill + 1)));
         System.out.printf(getShortName() + "Shot " + unit.getClass().getSimpleName() + " " + unit.name + " with " + hit + " damage\n\n");
         unit.getDamage(hit);
         this.ammunition--;

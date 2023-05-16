@@ -38,6 +38,6 @@ public class Monk extends NonWarriors {
     }
 
     public String toString() {
-        return super.toString() + " D: " + this.defenceSkill + " M: " + this.mana;
+        return super.toString() + " M: " + this.mana;
     }
 }

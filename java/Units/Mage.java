@@ -45,7 +45,7 @@ public class Mage extends Wizard{
                 team.get(mostDamagedIndex).currentHealth += hpToAdd;
                 this.mana -= hpToAdd;
             }
-            System.out.println("Heal " + team.get(mostDamagedIndex).getClass().getSimpleName() +
+            System.out.println(getShortName() + "Heal " + team.get(mostDamagedIndex).getClass().getSimpleName() +
                     " " + team.get(mostDamagedIndex).name + " by " + (manaBeforeUsage - this.mana) + " points\n");
     }
 

@@ -1,4 +1,5 @@
 import Enums.Names;
+import Enums.State;
 import Units.*;
 import Units.Monk;
 import Units.Peasant;
@@ -18,12 +19,33 @@ public class Program {
         battle.addAll(secondTeam);
         battle.sort(Unit::compareTo);
         var scanner = new Scanner(System.in);
-        while (true){
+        boolean isBattleContinuing = true;
+        while (isBattleContinuing){
             View.view();
             scanner.nextLine();
             for (Unit unit: battle) {
                 if (firstTeam.contains(unit)) unit.turnMove(secondTeam);
                 else unit.turnMove(firstTeam);
+            }
+            isBattleContinuing = false;
+            for (Unit unit: firstTeam){
+                if (unit.getState() == State.Dead) continue;
+                isBattleContinuing = true;
+                break;
+            }
+            if (!isBattleContinuing) {
+                System.out.println("\n" + "Second team Win!");
+                break;
+            }
+            isBattleContinuing = false;
+            for (Unit unit: secondTeam){
+                if (unit.getState() == State.Dead) continue;
+                isBattleContinuing = true;
+                break;
+            }
+            if (!isBattleContinuing) {
+                System.out.println("\n" + "First team Win!");
+                break;
             }
 
         }
