@@ -12,7 +12,7 @@ public class Peasant extends NonWarriors {
     }
 
     @Override
-    public void turnMove(ArrayList<Unit> enemyTeam) {
+    public void step(ArrayList<Unit> enemyTeam) {
         if (this.state == State.Busy) state = State.Available;
     }
 

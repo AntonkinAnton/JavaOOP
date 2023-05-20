@@ -32,7 +32,7 @@ public abstract class Unit implements IMovable, Comparable{
 //        if (new Random().nextBoolean()) this.currentHealth/=2;
     }
 
-    public void turnMove(ArrayList<Unit> enemyTeam){
+    public void step(ArrayList<Unit> enemyTeam){
 //        System.out.printf("Move forward on %d steps\n", speed);
     }
 
@@ -46,8 +46,8 @@ public abstract class Unit implements IMovable, Comparable{
     public int getCurrentHealth(){
         return this.currentHealth;
     }
-    public int[] getCoords(){
-        return new int[]{this.position.x, this.position.y};
+    public Coordinates getCoords(){
+        return new Coordinates(this.position.x, this.position.y);
     }
     public State getState(){
         return this.state;

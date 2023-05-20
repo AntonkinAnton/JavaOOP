@@ -14,11 +14,11 @@ public enum Names {
     MARCUS,
     ARTHUR,
     SHEPARD,
-    MEGA_MAN,
+    MEGAMAN,
     SONIC,
     RYU,
     PEACH,
-    BAYONETTA,
+    BETTA,
     DANTE,
     LEON;
 }

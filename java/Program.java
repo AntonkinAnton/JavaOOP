@@ -27,8 +27,8 @@ public class Program {
             if (isAnyTeamWin()) break;
             scanner.nextLine();
             for (Unit unit : battle) {
-                if (firstTeam.contains(unit)) unit.turnMove(secondTeam);
-                else unit.turnMove(firstTeam);
+                if (firstTeam.contains(unit)) unit.step(secondTeam);
+                else unit.step(firstTeam);
             }
         }
 

@@ -12,24 +12,50 @@ public class Monk extends NonWarriors {
                 name, Race.Human);
         this.mana = 50;
     }
+
+    @Override
+    public void step(ArrayList<Unit> enemyTeam) {
+
+        int bestTargetIndex = -1;
+        int maxHpTarget = Integer.MIN_VALUE;
+        for (int i = 0; i < this.team.size(); i++) {
+            if (this.team.get(i).state == State.Dead && isCellFree(this.team.get(i).getCoords(),this.team,enemyTeam)) {
+                int temp = this.team.get(i).maxHealth;
+                if (maxHpTarget < temp) {
+                    bestTargetIndex = i;
+                    maxHpTarget = temp;
+                }
+            }
+        }
+        if (bestTargetIndex == -1){
+            if (this.mana < 50) {
+                System.out.println(getShortName() + "There's nobody to resurrect. Gain 1 mana point\n");
+                this.mana += 1;
+                return;
+            } else {
+                System.out.println(getShortName() + "There's nobody to resurrect. Mana is full\n");
+                return;
+            }
+        }
+
+       if (this.mana - 30 < 0) {
+            System.out.println(getShortName() + "Not enough mana for resurrect. Gain 1 mana point\n");
+            this.mana += 1;
+            return;
+        }
+       resurrect(this.team.get(bestTargetIndex));
+    }
+
     public void resurrect(Unit unit){
         if (unit == this) {
             System.out.println("You can't resurect yourself!\n");
             return;
         }
-        if (this.mana - 25 < 0) {
-            System.out.println("Not enough mana!\n");
-            return;
-        }
-        if (unit.state != State.Dead){
-            System.out.println("He's not dead\n");
-            return;
-        }
 
-        System.out.println("Resurrect " + unit.race + " " + unit.name + ". His hp now " + unit.maxHealth + " points\n");
+        System.out.println(getShortName() + "Resurrect " + unit.getClass().getSimpleName() + " " + unit.name + ". His hp now " + unit.maxHealth + " points\n");
         unit.currentHealth = unit.maxHealth;
         unit.state = State.Available;
-        this.mana -= 25;
+        this.mana -= 30;
     }
 
     @Override

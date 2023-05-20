@@ -14,4 +14,10 @@ public class Coordinates {
         int diffY = this.y - opposite.y;
         return (int)Math.sqrt(Math.pow(diffX,2) + Math.pow(diffY, 2));
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        Coordinates coord = (Coordinates) obj;
+        return this.x == coord.x && this.y == coord.y;
+    }
 }

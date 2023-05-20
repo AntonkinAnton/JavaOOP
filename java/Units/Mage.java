@@ -9,10 +9,10 @@ import java.util.Random;
 public class Mage extends Wizard{
     public Mage(ArrayList<Unit> team, String name, int x, int y) {
         super(x, y, team, 40, 3,
-                3,  name, Race.Human, 5,100, new int[]{9, 11});
+                3,  name, Race.Human, 5,100, new int[]{5, 11});
     }
 
-    public void turnMove(ArrayList<Unit> enemyTeam){
+    public void step(ArrayList<Unit> enemyTeam){
 
             int hpToAdd = new Random().nextInt(this.spellDamage[0],this.spellDamage[1]+1);
             if(this.mana < 1){

@@ -20,7 +20,7 @@ abstract class Shooter extends Warrior implements IRangeAttack {
     }
 
     @Override
-    public void turnMove(ArrayList<Unit> enemyTeam) {
+    public void step(ArrayList<Unit> enemyTeam) {
         if (this.ammunition <= 0){
             System.out.println(getShortName() + "Out of ammo!\n");
             return;
@@ -30,7 +30,7 @@ abstract class Shooter extends Warrior implements IRangeAttack {
             return;
         }
         int nearestIndex = -1;
-        float min = Float.MAX_VALUE;
+        int min = Integer.MAX_VALUE;
         for (int i = 0; i < enemyTeam.size(); i++) {
             if (enemyTeam.get(i).state == State.Dead) continue;
             int temp = this.position.findDistance(enemyTeam.get(i).position);
