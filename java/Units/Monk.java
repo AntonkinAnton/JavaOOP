@@ -12,7 +12,8 @@ public class Monk extends NonWarriors {
                 name, Race.Human);
         this.mana = 50;
     }
-
+// Монахи могут воскрешать павших за 30 маны. На клетке цели не должен стоять никакой живой юнит.
+// Если маны нехватает или нет цели для воскрешения и мана не полная, то мана пополняется на 1 ед.
     @Override
     public void step(ArrayList<Unit> enemyTeam) {
 
