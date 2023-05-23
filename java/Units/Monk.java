@@ -39,11 +39,10 @@ public class Monk extends NonWarriors {
             if (this.mana < 50) {
                 System.out.println(getShortName() + "There's nobody to resurrect. Gain 1 mana point\n");
                 this.mana += 1;
-                return;
             } else {
                 System.out.println(getShortName() + "There's nobody to resurrect. Mana is full\n");
-                return;
             }
+            return;
         }
 
 
@@ -52,7 +51,7 @@ public class Monk extends NonWarriors {
 
     public void resurrect(Unit unit){
         if (unit == this) {
-            System.out.println("You can't resurect yourself!\n");
+            System.out.println("You can't resurrect yourself!\n");
             return;
         }
 
