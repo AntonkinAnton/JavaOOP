@@ -16,6 +16,13 @@ public class Monk extends NonWarriors {
 // Если маны нехватает или нет цели для воскрешения и мана не полная, то мана пополняется на 1 ед.
     @Override
     public void step(ArrayList<Unit> enemyTeam) {
+        if (this.state == State.Dead) return;
+
+        if (this.mana - 50 < 0) {
+            System.out.println(getShortName() + "Not enough mana for resurrect. Gain 1 mana point\n");
+            this.mana += 1;
+            return;
+        }
 
         int bestTargetIndex = -1;
         int maxHpTarget = Integer.MIN_VALUE;
@@ -39,11 +46,7 @@ public class Monk extends NonWarriors {
             }
         }
 
-       if (this.mana - 30 < 0) {
-            System.out.println(getShortName() + "Not enough mana for resurrect. Gain 1 mana point\n");
-            this.mana += 1;
-            return;
-        }
+
        resurrect(this.team.get(bestTargetIndex));
     }
 
@@ -56,7 +59,7 @@ public class Monk extends NonWarriors {
         System.out.println(getShortName() + "Resurrect " + unit.getClass().getSimpleName() + " " + unit.name + ". His hp now " + unit.maxHealth + " points\n");
         unit.currentHealth = unit.maxHealth;
         unit.state = State.Available;
-        this.mana -= 30;
+        this.mana -= 50;
     }
 
     @Override

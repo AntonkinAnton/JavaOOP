@@ -28,12 +28,13 @@ public class View {
         String out = "| ";
         for (Unit human: Program.battle) {
             if (human.getCoords().x == x && human.getCoords().y == y){
-                if (human.getState() == State.Dead) {
+                if (human.getState() == State.Dead && human.isCellFree(human.getCoords(), Program.firstTeam, Program.secondTeam)) {
                     out = "|" + (AnsiColors.ANSI_RED + human.getInfo().charAt(0) + AnsiColors.ANSI_RESET);
                     break;
                 }
+                else if (human.getState() == State.Dead) continue;
                 if (Program.secondTeam.contains(human)) out = "|" + (AnsiColors.ANSI_GREEN + human.getInfo().charAt(0) + AnsiColors.ANSI_RESET);
-                if (Program.firstTeam.contains(human)) out = "|" + (AnsiColors.ANSI_BLUE + human.getInfo().charAt(0) + AnsiColors.ANSI_RESET);
+                else if (Program.firstTeam.contains(human)) out = "|" + (AnsiColors.ANSI_BLUE + human.getInfo().charAt(0) + AnsiColors.ANSI_RESET);
                 break;
             }
         }
